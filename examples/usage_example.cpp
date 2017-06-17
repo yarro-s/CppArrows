@@ -7,7 +7,7 @@ int main()
    auto plus10 = cpp_arrows::make_arrow<int>(  // <int> is the type of the lambda param
             [](int x) { return x+10; });
 
-       // make a couple more arrows
+   // make a couple more arrows
    auto mult55  = cpp_arrows::make_arrow<int>([](int x) { return x*55; });
    auto div10_8 = cpp_arrows::make_arrow<int>([](int x) { return (float)x/10.8f; });
    auto peek  = cpp_arrows::make_arrow<std::pair<int, float> >(
