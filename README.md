@@ -19,7 +19,7 @@ operations are used for simplicity, the arguments can be of any type.
 First off, let's include `cpp_arrows.hpp` as usual 
 
 ```c++
-#include "cpp_arrows.hpp"  // supposed it's in the same folder with usage_example.cpp
+#include "cpp_arrows.hpp"  // supposing it's in the same folder with usage_example.cpp
 ```
 
 Arrows are normally created from lambdas or class methods with the `make_arrow<In>(lambda)`
