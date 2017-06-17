@@ -1,6 +1,6 @@
 ### Getting started
 
-Simply save [`cpp_arrows.hpp`](https://raw.githubusercontent.com/yarric/CppArrows/master/release/CppArrows/cpp_arrows.hpp) to your preferred location for header files.
+Simply save [`cpp_arrows.hpp`](https://raw.githubusercontent.com/yarric/CppArrows/master/release/CppArrows/cpp_arrows.hpp) to your preferred location for header files. A C++14 compiler required (tested with clang 3.6.0).
 
 ### Background
 
