@@ -8,6 +8,8 @@ Arrows represent a general method of composing computations. Another (less gener
 is, for example, monads. Arrows were first defined by John Hughes 
 ([draft](http://www.cse.chalmers.se/~rjmh/Papers/arrows.pdf)). For more info on arrows please visit [here](https://www.haskell.org/arrows/index.html) (in Haskell). There's also a [tutorial](https://wiki.haskell.org/Arrow_tutorial) 
 and a [wiki](https://en.wikibooks.org/wiki/Haskell/Understanding_arrows) on arrows, both are in Haskell.
+ 
+The concept of arrows is used in real-world programming in frameworks like [Yampa](https://wiki.haskell.org/Yampa) and [Netwire](https://wiki.haskell.org/Netwire) intended for creating game logic, artificial intelligence, continuous signal synthesis and simulations. 
 
 ### Usage example 
 
@@ -20,7 +22,7 @@ First off, let's include `cpp_arrows.hpp` as usual
 #include "cpp_arrows.hpp"  // supposed it's in the same folder with usage_example.cpp
 ```
 
-Arrows are normally created from lambdas of class methods with the `make_arrow<In>(lambda)`
+Arrows are normally created from lambdas or class methods with the `make_arrow<In>(lambda)`
 method where `In` is the type of the lambda's input parameter
 
 ```c++
