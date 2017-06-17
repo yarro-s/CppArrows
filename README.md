@@ -53,8 +53,8 @@ auto mult_div = mult55 & div10_8;   //
 mult_div(35);                       // == std::make_pair(mult55(35), div10_8(35));
 ```
 
-Let's compose more arrows. The `peek` arrow prints the pair with `std::cout` and 
-the `sum_pair` sums `first` and `second` members of `std::pair` (see 
+Let's compose some more arrows. The `peek` arrow prints the pair with `std::cout` and 
+the `sum_pair` sums the `first` and `second` members of `std::pair` (see 
 [`usage_example.cpp`](/examples/usage_example.cpp) for more details).
  
  ```c++
