@@ -23,7 +23,7 @@ First off, let's include `cpp_arrows.hpp` as usual
 ```
 
 Arrows are normally created from lambdas or class methods with the `make_arrow<In>(lambda)`
-method where `In` is the type of the lambda's input parameter
+function where `In` is the type of the lambda's input parameter
 
 ```c++
 // <int> is the type of the lambda input param
@@ -84,3 +84,6 @@ the `sum_pair` sums the `first` and `second` members of `std::pair` (see
            << "result with functions: " << res_2 << std::endl;
  ```
  
+ The output is
+ 
+ ```   Result with arrows: 3581.02 vs. result with functions: 3581.02```
