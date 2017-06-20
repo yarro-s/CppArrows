@@ -97,30 +97,16 @@ TEST_CASE("Arrow creation and application on structs by reference", "[make_arrow
 
 TEST_CASE("Arrow creation and application on classes by value", "[make_arrow]")
 {
-
     const auto arr_change_A_obj =
-            cpp_arrows::make_arrow<A_class>(&A_class::method_A1);
-
-    A_class arg_A_obj_1(365, 25.63f);
-    A_class arg_A_obj_2 = arg_A_obj_1;
-    const auto arg_A_obj_copy = arg_A_obj_1;
-
-    arg_A_obj_2.method_A1();
-    REQUIRE( arr_change_A_obj(arg_A_obj_1) == arg_A_obj_2 );
-    REQUIRE( arg_A_obj_1 == arg_A_obj_copy );
-}
-
-TEST_CASE("Arrow creation and application on classes by reference", "[make_arrow]")
-{
-
-    const auto arr_change_A_obj_by_ref =
-            cpp_arrows::make_arrow<A_class&>(&A_class::method_A2);
+            cpp_arrows::make_arrow<A_class>(&A_class::method_A2);
 
     A_class arg_A_obj_1(865, 82.518f);
     A_class arg_A_obj_2 = arg_A_obj_1;
     const auto arg_A_obj_copy = arg_A_obj_1;
 
     arg_A_obj_2.method_A2();
-    REQUIRE( arr_change_A_obj_by_ref(arg_A_obj_1) == arg_A_obj_2 );
+    arr_change_A_obj(arg_A_obj_1);
+    REQUIRE( arg_A_obj_1 == arg_A_obj_2 );
     REQUIRE_FALSE( arg_A_obj_1 == arg_A_obj_copy );
 }
+
