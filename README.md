@@ -7,7 +7,7 @@ Simply save [`cpp_arrows.hpp`](https://raw.githubusercontent.com/yarric/CppArrow
 Arrows represent a general method of composing computations. Another (less general) method 
 is, for example, monads. Arrows were first defined by John Hughes 
 ([draft](http://www.cse.chalmers.se/~rjmh/Papers/arrows.pdf)). For more info on arrows please visit [here](https://www.haskell.org/arrows/index.html) (in Haskell). There's also a [tutorial](https://wiki.haskell.org/Arrow_tutorial) 
-and a [wiki](https://en.wikibooks.org/wiki/Haskell/Understanding_arrows) on arrows, both are in Haskell.
+and a [wiki](https://en.wikibooks.org/wiki/Haskell/Understanding_arrows) on arrows (with code examples in Haskell).
  
 The concept of arrows is used in real-world programming in frameworks like [Yampa](https://wiki.haskell.org/Yampa) and [Netwire](https://wiki.haskell.org/Netwire) intended for creating game logic, artificial intelligence, continuous signal synthesis and simulations. 
 
@@ -39,7 +39,7 @@ plus10(20);  // 20+10 = 30
 ```
 
 Arrows support different kinds of composition, for example serial composition. Here
-`plus10` is applied first, then `mult55` is applied to the result
+`plus10` is applied first, then `mult55` is applied to the result of `plus10(75)`
 
 ```c++
 auto plus_mult = plus10 >> mult55;   
@@ -51,23 +51,23 @@ applied simultaneously with the result of each operation stored as the `first` a
 member of `std::pair`, respectively
 
 ```c++
-auto mult_div = mult55 & div10_8;   // 
+auto mult_div = mult55 & div10_8;    
 mult_div(35);                       // == std::make_pair(mult55(35), div10_8(35));
 ```
 
-Let's compose some more arrows. The `peek` arrow prints the pair with `std::cout` and 
+Let's compose some more arrows. Here the `peek` arrow prints the pair with `std::cout` and 
 the `sum_pair` sums the `first` and `second` members of `std::pair` (see 
 [`usage_example.cpp`](/examples/usage_example.cpp) for more details).
  
  ```c++
- auto composed_arrow = plus10 >> (mult55 & div10_8) >> peek >> sum_pair;
+ auto composed_with_arrows = plus10 >> (mult55 & div10_8) >> peek >> sum_pair;
  ```
  
- Composed with usual functional composition the computation represented by `composed_arrow`
+ Programmed with usual functions the computation represented by `composed_arrow`
  would look like
  
  ```c++
- auto composed_funcs = [=](int in)
+ auto composed_with_funcs = [=](int in)
  {
     int  res_plus = plus10(in);
     auto res_mult_div = std::make_pair(mult55(res_plus), div10_8(res_plus));
@@ -77,8 +77,8 @@ the `sum_pair` sums the `first` and `second` members of `std::pair` (see
  
  The following statements yield the same result
  ```c++
- float res_1 = composed_arrow(55);
- float res_2 = composed_funcs(55);
+ float res_1 = composed_with_arrows(55);
+ float res_2 = composed_with_funcs(55);
  // res_1 == res_2
  std::cout << "   Result with arrows: " << res_1 << " vs. "
            << "result with functions: " << res_2 << std::endl;
