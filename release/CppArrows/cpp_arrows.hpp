@@ -236,14 +236,11 @@ namespace cpp_arrows
       * as its input and returns the instances with the class method applied.
       */
     template<typename MethodOwnerClass, typename Out> inline
-    auto make_arrow(Out (std::remove_reference<MethodOwnerClass>::type::*method)())
+    auto make_arrow(Out (MethodOwnerClass::*method)())
     {
-        const auto m_bound = [&method](MethodOwnerClass owner)
-        {
-            (std::bind(method, &owner))();
-            return owner;
-        };
-        return make_arrow<MethodOwnerClass>(m_bound);
+        auto applicable_method = std::mem_fn(method);
+        return arrow<MethodOwnerClass&, decltype(applicable_method),
+                Out>(applicable_method);
     }
 }
 
