@@ -30,7 +30,7 @@ int main()
    {
       int  res_plus = plus10(in);
       auto res_mult_div = std::make_pair(mult55(res_plus), div10_8(res_plus));
-         return sum_pair(peek(res_mult_div));
+      return sum_pair(peek(res_mult_div));
    };
 
    // these are the same
