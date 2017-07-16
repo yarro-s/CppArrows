@@ -32,18 +32,18 @@ auto mult55  = cpp_arrows::make_arrow<int>([](int x) { return x*55; });
 auto div10_8 = cpp_arrows::make_arrow<int>([](int x) { return (float)x/10.8f; });
 ```
 
-An arrow can be used as a usual lambda
+An arrow can be used as the usual lambda
 
 ```c++
-plus10(20);  // 20+10 = 30
+auto res1 = plus10(20);  // res == 30 
 ```
 
 Arrows support different kinds of composition, for example serial composition. Here
-`plus10` is applied first, then `mult55` is applied to the result of `plus10(75)`
+`plus10` is applied first to `75`, then `mult55` is applied to the result of `plus10(75)`
 
 ```c++
-auto plus_mult = plus10 >> mult55;   
-plus_mult(75);                       // == mult55(plus10(75)) == (75+10)*55 == 4675
+auto plus_mult = plus10 >> mult55;   // equivalent to mult55(plus10(75))
+auto res1 = plus_mult(75);           // res1 == (75+10)*55 == 4675
 ```
 
 Arrows also support parallel composition. In this example `mult55` and `div10_8` are 
@@ -52,7 +52,7 @@ member of `std::pair`, respectively
 
 ```c++
 auto mult_div = mult55 & div10_8;    
-mult_div(35);                       // == std::make_pair(mult55(35), div10_8(35));
+auto res3 = mult_div(35);            // res3 == std::make_pair(mult55(35), div10_8(35));
 ```
 
 Let's compose some more arrows. Here the `peek` arrow prints the pair with `std::cout` and 
@@ -63,7 +63,7 @@ the `sum_pair` sums the `first` and `second` members of `std::pair` (see
  auto composed_with_arrows = plus10 >> (mult55 & div10_8) >> peek >> sum_pair;
  ```
  
- Programmed with usual functions the computation represented by `composed_arrow`
+ Programmed with the usual application of functions the computation represented by `composed_arrow`
  would look like
  
  ```c++
@@ -75,7 +75,7 @@ the `sum_pair` sums the `first` and `second` members of `std::pair` (see
  };
  ```
  
- The following statements yield the same result
+ So the following statements yield the same result
  ```c++
  float res_1 = composed_with_arrows(55);
  float res_2 = composed_with_funcs(55);
